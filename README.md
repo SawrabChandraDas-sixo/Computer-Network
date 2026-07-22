@@ -4,73 +4,82 @@ Computer Network is a demanding skill. In this connected world this skill become
 2.Copy the command and paste in CLI
 Command Line:
 
-Core Router 
-router0>enable
-router0#configure terminal
-interface GigabitEthernet0/0
- ip address 10.0.0.1 255.255.255.252
- no shutdown
-exit
+Core Router:
 
-interface GigabitEthernet0/1
- ip address 10.0.0.5 255.255.255.252
- no shutdown
-exit
+Router0> enable
+Router0# configure terminal
 
-router eigrp 10
- no auto-summary
- network 10.0.0.0 0.0.0.3
- network 10.0.0.4 0.0.0.3
-exit
+Router0(config)# hostname CoreRouter
 
-end
-write memory
+CoreRouter(config)# interface GigabitEthernet0/0
+CoreRouter(config-if)# ip address 10.0.0.1 255.255.255.252
+CoreRouter(config-if)# no shutdown
+CoreRouter(config-if)# exit
 
-Distribution Router 1
+CoreRouter(config)# interface GigabitEthernet0/1
+CoreRouter(config-if)# ip address 10.0.0.5 255.255.255.252
+CoreRouter(config-if)# no shutdown
+CoreRouter(config-if)# exit
 
-enable
-configure terminal
+CoreRouter(config)# router eigrp 10
+CoreRouter(config-router)# no auto-summary
+CoreRouter(config-router)# network 10.0.0.0 0.0.0.3
+CoreRouter(config-router)# network 10.0.0.4 0.0.0.3
+CoreRouter(config-router)# exit
 
-interface GigabitEthernet0/0
- ip address 192.168.10.1 255.255.255.0
- no shutdown
-exit
+CoreRouter(config)# end
+CoreRouter# write memory
 
-interface GigabitEthernet0/1
- ip address 10.0.0.2 255.255.255.252
- no shutdown
-exit
+Distribution Router1:
 
-router eigrp 10
- no auto-summary
- network 10.0.0.0 0.0.0.3
- network 192.168.10.0 0.0.0.255
-exit
+Router1> enable
+Router1# configure terminal
 
-end
-write memory
+Router1(config)# hostname DistRouter1
+
+DistRouter1(config)# interface GigabitEthernet0/0
+DistRouter1(config-if)# ip address 192.168.10.1 255.255.255.0
+DistRouter1(config-if)# no shutdown
+DistRouter1(config-if)# exit
+
+DistRouter1(config)# interface GigabitEthernet0/1
+DistRouter1(config-if)# ip address 10.0.0.2 255.255.255.252
+DistRouter1(config-if)# no shutdown
+DistRouter1(config-if)# exit
+
+DistRouter1(config)# router eigrp 10
+DistRouter1(config-router)# no auto-summary
+DistRouter1(config-router)# network 10.0.0.0 0.0.0.3
+DistRouter1(config-router)# network 192.168.10.0 0.0.0.255
+DistRouter1(config-router)# exit
+
+DistRouter1(config)# end
+DistRouter1# write memory
 
 
-Distribution Router 2
 
-enable
-configure terminal
+Distribution Router2:
 
-interface GigabitEthernet0/0
- ip address 192.168.20.1 255.255.255.0
- no shutdown
-exit
+Router2> enable
+Router2# configure terminal
 
-interface GigabitEthernet0/1
- ip address 10.0.0.6 255.255.255.252
- no shutdown
-exit
+Router2(config)# hostname DistRouter2
 
-router eigrp 10
- no auto-summary
- network 10.0.0.4 0.0.0.3
- network 192.168.20.0 0.0.0.255
-exit
+DistRouter2(config)# interface GigabitEthernet0/0
+DistRouter2(config-if)# ip address 192.168.20.1 255.255.255.0
+DistRouter2(config-if)# no shutdown
+DistRouter2(config-if)# exit
 
-end
-write memory
+DistRouter2(config)# interface GigabitEthernet0/1
+DistRouter2(config-if)# ip address 10.0.0.6 255.255.255.252
+DistRouter2(config-if)# no shutdown
+DistRouter2(config-if)# exit
+
+DistRouter2(config)# router eigrp 10
+DistRouter2(config-router)# no auto-summary
+DistRouter2(config-router)# network 10.0.0.4 0.0.0.3
+DistRouter2(config-router)# network 192.168.20.0 0.0.0.255
+DistRouter2(config-router)# exit
+
+DistRouter2(config)# end
+DistRouter2# write memory
